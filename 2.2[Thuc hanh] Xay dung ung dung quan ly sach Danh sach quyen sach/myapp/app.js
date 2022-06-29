@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-const PORT = 5000;
+const PORT = 3000;
 
 app.use(bodyParser.json());
 const upload = multer();
@@ -65,5 +65,14 @@ app.get("/book/list", (req, res) => {
     connection.query(sql, function (err, result) {
         if (err) throw err;
         res.render("list", {books: result});
+    });
+})
+
+app.get("/book/detail", (req, res) => {
+    const sql = "SELECT * FROM books WHERE id =" + req.query.id;
+    connection.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(result, 'result')
+        res.render("detail", {book: result[0]});
     });
 })
