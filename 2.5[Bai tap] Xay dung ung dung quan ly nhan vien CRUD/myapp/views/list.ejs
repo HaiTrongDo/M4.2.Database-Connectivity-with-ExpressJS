@@ -2,37 +2,26 @@
 <html lang="en">
 <head>
     <title>Books</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript">
-        const detail = (id) => {
-            window.open('http://localhost:3000/book/detail' + '?' + 'id=' + id);
-        };
-        const deleteBook = async (id) => {
-            console.log(id, 'id')
-            await $.ajax({
-                url: "http://localhost:3000/book/delete",
-                type: "DELETE",
-                data: JSON.stringify({
-                    "id": id
-                }),
-                dataType: "json",
-                contentType: "application/json",
-                success: function(result) {},
-                error: function(xhr, ajaxOptions, thrownError) {
-                    console.log(xhr.status);
-                    console.log(thrownError);
-                }
-            });
-            location.reload();
-        };
-    </script>
+
 </head>
 <body>
-<h3>List books</h3><% for (const book of books) { %> <p>Name: <%= book.name %> </p>
-<p>Price: <%= book.price %> </p>
-<p>Quantity: <%= book.quantity %> </p>
-<p>Author: <%= book.author %> </p>
-<button onclick="detail('<%= book.id %>')">Detail </button>
-<button onclick="deleteBook('<%= book.id %>')">Delete </button><% } %>
+<h3>List books</h3>
+<h5><a href="/register">Go to register page</a></h5>
+<table>
+    <% for (const employee of employeeList) { %>
+    <tr>
+        <td>ID: <%= employee.id %> </td>
+        <td>Name: <%= employee.name %> </td>
+        <td>Phone Number: <%= employee.phone %> </td>
+        <td>Employee Name: <%= employee.address %> </td>
+    </tr>
+<% } %>
+    <tr>
+        <% for (let i = 0; i< (total[0].total%5!==0 ? Math.floor(total[0].total/5) + 1: total[0].total/5) ; i++ )  { %>
+           <td><a href="/employee/list?page=<%=i%>">page<%=i%></a></td>
+        <% } %>
+    </tr>
+</table>
+
 </body>
 </html>

@@ -10,8 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "http-errors": "^2.0.0",
+    "lodash": "^4.17.21",
+    "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1"
   }
