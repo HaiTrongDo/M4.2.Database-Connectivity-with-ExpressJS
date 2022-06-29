@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-const PORT = 3000;
+const PORT = 8000;
 
 app.use(bodyParser.json());
 const upload = multer();
@@ -76,3 +76,16 @@ app.get("/book/detail", (req, res) => {
         res.render("detail", {book: result[0]});
     });
 })
+
+
+app.delete("/book/delete", (req, res) => {
+    console.log(req.body);
+    const sql = "DELETE FROM books WHERE id = " + req.body.id;
+    connection.query(sql, function (err, result) {
+        if (err) throw err;
+        res.json({status: 200, message: "delete success"})
+    });
+})
+app.listen(PORT, () => {
+    console.log("Server running on port:" + PORT);
+});
